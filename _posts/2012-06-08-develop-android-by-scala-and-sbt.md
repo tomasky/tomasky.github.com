@@ -12,7 +12,6 @@ tags: []
 ###tools
 
 language:`scala`  
-plugin: xsbt   
-    
-    xsbt-plugin:[android-plugin](https://github.com/jberkel/android-plugin)
+plugin: `xsbt`   
+    --:xsbt-plugin:[android-plugin](https://github.com/jberkel/android-plugin)
 
