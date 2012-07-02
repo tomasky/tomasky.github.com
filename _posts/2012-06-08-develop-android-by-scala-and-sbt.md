@@ -13,5 +13,6 @@ tags: []
 
 * language:`scala 2.9.2`  
 * plugin: `xsbt 0.11.3`   
+
     --:xsbt-plugin:[android-plugin](https://github.com/jberkel/android-plugin)
 
