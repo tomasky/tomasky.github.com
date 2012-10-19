@@ -20,7 +20,10 @@ parent: blog
         <time>{{ post.date | date: "%A, %B %d" }}</time>
         <!-- Unless there are no category, put them here -->
         {% unless post.category == empty %}
-        @ {{post.category}} 
+          <h4>category</h4>
+          <ul class="tag_box">
+          <a class="category" href="/categories.html#{{ post.category }}">@{{ post.category }}</a>
+          </ul>
         {% endunless %} 
          
         <!-- Unless there are no tags, put them here -->
