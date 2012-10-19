@@ -76,12 +76,11 @@
         <h1>
           <!-- Adding the icon based on page type -->
           <span class="logo-type">
-         >> {{page.parent}}
-            {% if page.parent == 'blog'  %}
+            {% if page.parent == 'blog' %}
               <img src="{{ ASSET_PATH }}/images/blog.png" alt="blog" />
-			{% elsif page.parent == 'projects'  %}
-              <img src="{{ ASSET_PATH }}/images/projects.png" alt="blog" />
-            {% elsif page.parent == 'info'  %}
+			{% elsif page.parent == 'projects' %}
+              <img src="{{ ASSET_PATH }}/images/projects.png" alt="projects" />
+            {% elsif page.parent == 'info' %}
               <img src="{{ ASSET_PATH }}/images/about.png" alt="about" />
             {% elsif page.parent == 'photo' %} 
               <img src="{{ ASSET_PATH }}/images/photography.png" alt="photography" />
