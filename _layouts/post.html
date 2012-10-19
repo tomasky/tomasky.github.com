@@ -14,7 +14,7 @@ parent: blog
 <!-- Unless there are no category, put them here -->
   {% unless post.category == empty %}
     <h4>category</h4>
-    <ul class="category_box">
+    <ul class="tag_box">
       {% assign categories_list = post.category %}
       {% include JB/categories_list %}
     </ul>
