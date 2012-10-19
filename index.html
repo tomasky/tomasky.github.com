@@ -23,7 +23,7 @@ parent: blog
           <h4>category</h4>
           <ul class="category_box">
             {% assign categories_list = post.category %}
-            in{% include JB/categories_list %}
+            {% include JB/categories_list %}
           </ul>
         {% endunless %} 
          
