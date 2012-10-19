@@ -11,6 +11,14 @@ parent: blog
   <div class="metadata">
     <!-- See Liquid date filters here: http://wiki.shopify.com/Date -->
     <time>{{ page.date | date: "%A, %B %d" }}</time>
+<!-- Unless there are no category, put them here -->
+  {% unless post.category == empty %}
+    <h4>category</h4>
+    <ul class="category_box">
+      {% assign categories_list = post.category %}
+      {% include JB/categories_list %}
+    </ul>
+  {% endunless %}
 
   {% unless page.tags == empty %}
     <h4>Tags</h4>
