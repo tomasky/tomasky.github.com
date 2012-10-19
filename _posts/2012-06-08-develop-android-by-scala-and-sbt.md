@@ -3,7 +3,7 @@ layout: post
 title: "develop android by scala and sbt"
 description: ""
 post_type: "text"
-category: 
+category: "develop" 
 tags: [xsbt, android]
 ---
 {% include JB/setup %}
