@@ -19,7 +19,7 @@ parent: blog
         <!-- See Liquid date filters here: http://wiki.shopify.com/Date -->
         <time>{{ post.date | date: "%A, %B %d" }}</time>
         <!-- Unless there are no category, put them here -->
-        {% unless post.category== empty %}
+        {% unless post.category == empty %}
         @ {{post.category}} 
         {% endunless %} 
          
