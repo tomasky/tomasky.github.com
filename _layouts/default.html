@@ -76,6 +76,7 @@
         <h1>
           <!-- Adding the icon based on page type -->
           <span class="logo-type">
+         >> {{page.parent}}
             {% if page.parent == 'blog'  %}
               <img src="{{ ASSET_PATH }}/images/blog.png" alt="blog" />
 			{% elsif page.parent == 'projects'  %}
