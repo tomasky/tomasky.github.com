@@ -4,7 +4,7 @@ title: "develop android by scala and sbt"
 description: ""
 post_type: "text"
 category: 
-tags: []
+tags: [xsbt,android]
 ---
 {% include JB/setup %}
 
