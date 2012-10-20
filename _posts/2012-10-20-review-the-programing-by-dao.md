@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "从道的角度来看编程"
-post_type: "blog"
+post_type: "text"
 description: ""
 category: 
 tags: [program]
