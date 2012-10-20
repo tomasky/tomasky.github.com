@@ -17,7 +17,7 @@ parent: blog
         
         <!-- Date -->
         <!-- See Liquid date filters here: http://wiki.shopify.com/Date -->
-        <time>{{ post.date | date: "%A, %B %d" }}</time>
+        <time>{{ post.date | date: "%A, %B %d %Y" }}</time>
         <!-- Unless there are no category, put them here -->
         {% unless post.category == empty %}
           <h4>category</h4>
