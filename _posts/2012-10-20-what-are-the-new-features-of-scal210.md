@@ -11,12 +11,12 @@ tags: []
 ##值类(value class)
 允许用户继承顶级类AnyVal,如代码:
 
- ```scala
+<code lang="scala">
  class C(val u:U) extends AnyVal{
    def m1(ps1) = ...
    def m2(psn)= ...
  }
- ```
+</code> 
  这里的C叫做值类，它必须满足一下条件：   
 
 1. C必须只有一个public 公共可访问的val 不变参数,如C类的u参数，这里的类型U叫做`相关类型`.  
@@ -41,7 +41,7 @@ tags: []
 1. 值类是final的，所以不能被继承.
 1. 有隐式方法 'equals','hashCode'(可继承自AnyVal):
 
-```scala
+<code lang="scala">
 def equals(other: Any) = other match {
 case that: C => this.u == that.u
 case _ => false
@@ -52,10 +52,10 @@ def hashCode = u.hashCode
 ##万能特质(universal trait)
 由于scala的规制，值类不能继承trait，因为所有的trait继承自AnyRef，除非是`万能特质（universal trait)`. `universal trait`必须明确继承Any类，比如:
 
-```scala
+<code lang="scala">
  trait Equals[T] extends Any { … }
  trait Ordered[T] extends Equals[T] { … } 
-```
+</code>
 这里Ordered需要继承Any类，才是万能特质
 > trait Ordered[T] extends Any with Equals[T]{}  
 > 万能特质也是`ephemeral` 
