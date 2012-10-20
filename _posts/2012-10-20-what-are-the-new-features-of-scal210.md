@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "scal2.10 中有哪些新东西"
-post_type: ""
+post_type: "text"
 description: ""
 category: 
 tags: []
 ---
 {% include JB/setup %}
 
-##值类
+##值类(value class)
 允许用户继承顶级类AnyVal,如代码:
 
  ```scala
@@ -27,7 +27,7 @@ tags: []
 1. C必须是顶级类或静态可访问对象的成员.  
 1. C必须是`ephemeral`. 
 
-什么是`ephemeral`?
+什么是`ephemeral`(短暂)?
 
 1. 可以除了u:U参数，没有其他的域.  
 1. 可以没有object定义.  
@@ -48,3 +48,15 @@ case _ => false
 }
 def hashCode = u.hashCode
 ```
+
+##万能特质(universal trait)
+由于scala的规制，值类不能继承trait，因为所有的trait继承自AnyRef，除非是`万能特质（universal trait)`. `universal trait`必须明确继承Any类，比如:
+
+```scala
+ trait Equals[T] extends Any { … }
+ trait Ordered[T] extends Equals[T] { … } 
+```
+这里Ordered需要继承Any类，才是万能特质
+> trait Ordered[T] extends Any with Equals[T]{}  
+> 万能特质也是`ephemeral` 
+
