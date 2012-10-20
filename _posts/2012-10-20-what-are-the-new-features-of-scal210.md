@@ -4,7 +4,7 @@ title: "scal2.10 中有哪些新东西"
 post_type: "text"
 description: ""
 category: 
-tags: []
+tags: [scala]
 ---
 {% include JB/setup %}
 
