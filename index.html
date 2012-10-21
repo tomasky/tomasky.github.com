@@ -45,7 +45,7 @@ parent: blog
         {% when 'text' %} 
           <div class="text">
             <h1><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h1>
-			<p>{{ post.content | truncatehtml: 150 }}</p>
+			<p>{{ post.content | truncatehtml: 5 }}</p>
             <a href="{{ BASE_PATH }}{{ post.url }}">Read the full post</a>
           </div>
 
