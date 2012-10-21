@@ -76,7 +76,7 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
 
 简单来说，我们假设所有的扩充步骤是针对于可擦除类型来做的.
 
-1.抽取方法(extracting method)   
+1. 抽取方法(extracting method)   
   让值类的extractable method成为在类(不能继承)中可以自己表示的方法 ,并且在方法体中不含super调super调用用.  
   对于每个extractable method m，我们在这个类的半生对象(如果没有，自动新建)中建另外一个叫extension$m的方法,这个方法如下:
   >对于 class C(val u: U) extends AnyVal{ def m(params):R=body }  
@@ -85,3 +85,83 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
   >然后类C中的m方法会编译为：  
   >def m(params):R = C.m$extension(this,params)  
   >重载的方法有其他的名字来区分(divide$extension1(this,factor))，合成的equals和hashCode方法也会加入到类中来.
+
+1. 重选调用 
+> val x, y: Meter  
+	x.plus(y)  
+	x.toString  
+>将被重写为:  
+> Meter.plus$extension(x,y)  
+  Meter.toString$extension(x)
+
+1. 擦除 
+下面，我们为类型C介绍一个新的类型叫C$unboxed(将会在第4步被除去).这个新类型没有成员，完全独立于scala类层级之外.他是非其他类型的子类，是Nothing的父类. 
+
+1. 清除C$unboxed
+替换C$unboxed为C的相关类型
+
+
+##动态类型
+{% highlight scala %}
+//模块化语言
+import language.dynamics
+// applyDynamicNamed example
+object JSON extends Dynamic {
+  def applyDynamicNamed(name: String)(args: (String, Any)*) {
+    println(s"""Creating a $name, for:\n "${args.head._1}": "${args.head._2}" """)
+  }
+}
+ 
+JSON.node(nickname = "ktoso")
+
+//select
+
+object Has extends Dynamic {
+  def selectDynamic(name: String): String = s"I have $name!"
+}
+println(Has.wo)
+
+
+// updateDynamic example
+object MagicBox extends Dynamic {
+  private var box = mutable.Map[String, Any]()
+ 
+  def updateDynamic(name: String)(value: Any) { box(name) = value }
+  def selectDynamic(name: String) = box(name)
+}
+MagicBox.sh ="jack" 
+{% endhighlight %}
+
+##隐式导入类型
+{% highlight scala %}
+implicit class RichInt(n: Int) extends Ordered[Int] {
+  def min(m: Int): Int = if (n <= m) n else m
+}
+//转化为如下：(scala只有值和类型两个命名空间,方法和类型名可以重复)
+class RichInt(n: Int) extends Ordered[Int] {
+  def min(m: Int): Int = if (n <= m) n else m
+}
+implicit final def RichInt(n: Int): RichInt = new RichInt(n)
+{% endhighlight %}
+
+##串注入
+{% highlight scala %}
+//串类型s
+val ss = s"this a num${2+2}" 
+
+//万能类型f,串中可以出现所有匹配的number  
+println(f"$name%s is $height%2.2f meters tall")
+
+//原生类型raw,让转换符号无效  
+s"a/nb"  >a
+ b
+raw"a/nb" > a/nb
+
+//自定义类型 id"$name,$age"  
+//1. ss"a$name" 转化=> new StringContext("a","").ss(name)
+//2.自定义implicit
+implicit class T(val sc:StringContext) {
+ def ss(args:Any*) = _
+}
+
+{% endhighlight %}
