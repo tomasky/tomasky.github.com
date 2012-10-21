@@ -34,7 +34,7 @@ tags: [scala]
 1. 没有初始化语句块. 
 
 
-如果C的相关类型是D类型的实例,C可以直接拆厢到D. 
+如果C的相关类型是D类型的实例,C可以直接拆厢到D.间接拆厢是直接拆厢的过渡闭包，值类不能间接或直接拆厢到自己. 
 
 下面的隐式转换假设适用于值类:
 
@@ -77,5 +77,11 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
 简单来说，我们假设所有的扩充步骤是针对于可擦除类型来做的.
 
 1.抽取方法(extracting method)   
-   
-        
+  让值类的extractable method成为在类(不能继承)中可以自己表示的方法 ,并且在方法体中不含super调super调用用.  
+  对于每个extractable method m，我们在这个类的半生对象(如果没有，自动新建)中建另外一个叫extension$m的方法,这个方法如下:
+  >对于 class C(val u: U) extends AnyVal{ def m(params):R=body }  
+  >m方法在伴生对象中被扩充为 ：   
+  >def extension$m($this: C, params): R = body’ (经过实验，实际上object C中生成的是m$extension)  
+  >然后类C中的m方法会编译为：  
+  >def m(params):R = C.m$extension(this,params)  
+  >重载的方法有其他的名字来区分(divide$extension1(this,factor))，合成的equals和hashCode方法也会加入到类中来.
