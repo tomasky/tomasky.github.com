@@ -17,21 +17,21 @@ tags: [scala]
    def m2(psn)= ...
  }
  {% endhighlight %}
- 这里的C叫做值类，它必须满足一下条件：   
+ 这里的C叫做值类，它必须满足以下条件：   
 
 1. C必须只有一个public 公共可访问的val 不变参数,如C类的u参数，这里的类型U叫做`相关类型`.  
-1. C可以没有@specialized 类型参数.  
-1. C的相关类型可以不是值类.  
-1. C可以没有`equals` 和`hashCode`方法.  
-1. C可以没有其他的构涵.  
+1. C没有@specialized 类型参数.  
+1. C的相关类型不是值类.  
+1. C不可覆盖`equals` 和`hashCode`方法.  
+1. C没有其他的构函.  
 1. C必须是顶级类或静态可访问对象的成员.  
 1. C必须是`ephemeral`. 
 
 什么是`ephemeral`(短暂)?
 
-1. 可以除了u:U参数，没有其他的域.  
-1. 可以没有object定义.  
-1. 可以没有初始化语句快. 
+1. 除了u:U参数，没有其他的域.  
+1. 没有object定义.  
+1. 没有初始化语句块. 
 
 
 如果C的相关类型是D类型的实例,C可以直接拆厢到D. 
@@ -61,3 +61,21 @@ def hashCode = u.hashCode
 > trait Ordered[T] extends Any with Equals[T]{}  
 > 万能特质也是`ephemeral` 
 
+##值类扩充
+值类可以被扩充，如下面的Meter类：
+{% highlight scala %}
+class Meter(val underlying: Double) extends AnyVal with Printable {
+  def plus (other: Meter): Meter = 
+    new Meter(this.underlying + other.underlying)
+  def divide (factor: Double): Meter = new Meter(this.underlying / factor)
+  def less (other: Meter): Boolean = this.underlying < other.underlying
+  override def toString: String = underlying.toString + “m”
+}
+trait Printable extends Any { def print: Unit = Console.print(this) }
+{% endhighlight %}
+
+简单来说，我们假设所有的扩充步骤是针对于可擦除类型来做的.
+
+1.抽取方法(extracting method)   
+   
+        
