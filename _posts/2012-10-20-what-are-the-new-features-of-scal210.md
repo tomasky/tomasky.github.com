@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "scal2.10 中有哪些新东西"
+title: "scala2.10 中有哪些新东西"
 post_type: "text"
 description: ""
 category: 
