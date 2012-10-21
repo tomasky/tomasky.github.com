@@ -1,5 +1,5 @@
 /* Need to add authorship informaion here */
-code,dfn,em,strong,th,var{padding:2px 4px;color:#111;background-color:#f7f7f9;border:1px solid #e1e1e8;font-size:14px;}
+code,strong{padding:2px 4px;color:#111;background-color:#f7f7f9;border:1px solid #e1e1e8;font-size:14px;}
 body { padding: 0px; background-color: #FFF; font-family: "freight-sans-pro-1", "freight-sans-pro-2", verdana, helvetica, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.4em; }
 /** { color: #111; }*/
 
