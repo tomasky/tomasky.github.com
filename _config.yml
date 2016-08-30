@@ -7,6 +7,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
 
 highlighter: rouge
+markdwon: kramdown
 
 paginate: 5
 # Themes are encouraged to use these universal variables 
