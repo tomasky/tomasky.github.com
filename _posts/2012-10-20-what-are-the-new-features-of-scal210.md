@@ -7,6 +7,8 @@ category:
 tags: [scala]
 ---
 {% include JB/setup %}
+scala2.10 新特性
+----
 
 ## 值类(value class)
 允许用户继承顶级类AnyVal,如代码:
@@ -61,6 +63,8 @@ def hashCode = u.hashCode
 > trait Ordered[T] extends Any with Equals[T]{}  
 > 万能特质也是`ephemeral` 
 
+<!--break-->
+
 ## 值类扩充
 值类可以被扩充，如下面的Meter类：
 {% highlight scala %}
@@ -79,12 +83,12 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
 1. 抽取方法(extracting method)   
   让值类的extractable method成为在类(不能继承)中可以自己表示的方法 ,并且在方法体中不含super调super调用用.  
   对于每个extractable method m，我们在这个类的半生对象(如果没有，自动新建)中建另外一个叫extension$m的方法,这个方法如下:
-  >对于 class C(val u: U) extends AnyVal{ def m(params):R=body }  
-  >m方法在伴生对象中被扩充为 ：   
-  >def extension$m($this: C, params): R = body’ (经过实验，实际上object C中生成的是m$extension)  
-  >然后类C中的m方法会编译为：  
-  >def m(params):R = C.m$extension(this,params)  
-  >重载的方法有其他的名字来区分(divide$extension1(this,factor))，合成的equals和hashCode方法也会加入到类中来.
+  > 对于 class C(val u: U) extends AnyVal{ def m(params):R=body }  
+  > m方法在伴生对象中被扩充为 ：   
+  > def extension$m($this: C, params): R = body’ (经过实验，实际上object C中生成的是m$extension)  
+  > 然后类C中的m方法会编译为：  
+  > def m(params):R = C.m$extension(this,params)  
+  > 重载的方法有其他的名字来区分(divide$extension1(this,factor))，合成的equals和hashCode方法也会加入到类中来.
 
 1. 重选调用 
 > val x, y: Meter  
