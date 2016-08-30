@@ -11,7 +11,7 @@ gems: [jekyll-paginate]
 
 
 markdown: kramdown
-paginate: 2
+paginate: 5
 #
 #
 # Themes are encouraged to use these universal variables 
