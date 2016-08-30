@@ -8,7 +8,7 @@ tags: [scala]
 ---
 {% include JB/setup %}
 
-##值类(value class)
+## 值类(value class)
 允许用户继承顶级类AnyVal,如代码:
 
 {% highlight scala %}
@@ -49,7 +49,7 @@ case _ => false
 def hashCode = u.hashCode
 {% endhighlight %}
 
-##万能特质(universal trait)
+## 万能特质(universal trait)
 由于scala的规制，值类不能继承trait，因为所有的trait继承自AnyRef，除非是`万能特质（universal trait)`. `universal trait`必须明确继承Any类，比如:
 
 {% highlight scala %}
@@ -61,7 +61,7 @@ def hashCode = u.hashCode
 > trait Ordered[T] extends Any with Equals[T]{}  
 > 万能特质也是`ephemeral` 
 
-##值类扩充
+## 值类扩充
 值类可以被扩充，如下面的Meter类：
 {% highlight scala %}
 class Meter(val underlying: Double) extends AnyVal with Printable {
@@ -90,7 +90,7 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
 > val x, y: Meter  
 	x.plus(y)  
 	x.toString  
->将被重写为:  
+> 将被重写为:  
 > Meter.plus$extension(x,y)  
   Meter.toString$extension(x)
 
@@ -101,7 +101,7 @@ trait Printable extends Any { def print: Unit = Console.print(this) }
 替换C$unboxed为C的相关类型
 
 
-##动态类型
+## 动态类型
 {% highlight scala %}
 //模块化语言
 import language.dynamics
@@ -132,7 +132,7 @@ object MagicBox extends Dynamic {
 MagicBox.sh ="jack" 
 {% endhighlight %}
 
-##隐式导入类型
+## 隐式导入类型
 {% highlight scala %}
 implicit class RichInt(n: Int) extends Ordered[Int] {
   def min(m: Int): Int = if (n <= m) n else m
@@ -144,7 +144,7 @@ class RichInt(n: Int) extends Ordered[Int] {
 implicit final def RichInt(n: Int): RichInt = new RichInt(n)
 {% endhighlight %}
 
-##串注入
+## 串注入
 {% highlight scala %}
 //串类型s
 val ss = s"this a num${2+2}" 
