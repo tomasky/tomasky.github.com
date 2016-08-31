@@ -1,16 +1,19 @@
 ---
 layout: post
-title: GO语言restful api
+title: Golang`s restful api
 category : golang
 tagline: "Supporting tagline"
 tags : [golang,rest]
 ---
 {% include JB/setup %}
-# GO语言rest api实现
+## Golang`s restful api presentation
 ----
 
 
+### about
 
-### 代码地址
-----
-[osin-json-rest](http://github.com/tomasky/osin-json-rest)
+some lib using go-json-rest and osin togeter  
+
+###  code here
+
+<http://github.com/tomasky/osin-json-rest>
